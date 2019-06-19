@@ -1,9 +1,10 @@
-var Calculadora ={
-  init: function(){
-    this.buscarTeclayAplicarEvento('.teclado img');
+var Calculadora = {
+  init: function () {
+    var tipoclase='.teclado img';
+    this.buscarTeclasyAplicarEvento(tipoclase);
   },
 
-  buscarTeclayAplicarEvento: function(selector){
+  buscarTeclasyAplicarEvento: function(selector) {
     var TeclasPagina = document.querySelectorAll(selector);
     for (var i=0; i< TeclasPagina.length; i++){
       TeclasPagina[i].onmousedown = this.eventoReducirTecla;
@@ -12,7 +13,7 @@ var Calculadora ={
     }
   },
 
-  eventoReducirTecla: function(event){
+  eventoReducirTecla: function(event) {
     elemento=(event.target);
     var clase=elemento.parentElement.className;
     switch (clase){
@@ -31,7 +32,7 @@ var Calculadora ={
     }
   },
 
-  eventoAumentarTecla: function(event){
+  eventoAumentarTecla: function(event) {
     elemento=(event.target);
     var clase=elemento.parentElement.className;
     switch (clase){
@@ -129,7 +130,7 @@ var Calculadora ={
           }
         break;
         case 'punto':
-          numero = Number(display.innerHTML);
+          var numero = Number(display.innerHTML);
           if (display.innerHTML=="0"){
             display.innerHTML= "0.";
             } else {
@@ -139,16 +140,36 @@ var Calculadora ={
           }
         break;
         case 'sign':
-          numero = Number(display.innerHTML);
+          var numero = Number(display.innerHTML);
           if (display.innerHTML=="0"){
             display.innerHTML="0";
           } else {
             display.innerHTML=-numero;
           }
-          break;
+        break;
+        case 'mas':
+        case 'menos':
+        case 'por':
+        case 'dividido':
+          valor1 = Number(display.innerHTML),
+          sessionStorage.setItem("valor1",valor1);
+          sessionStorage.setItem("digito",digito);
+          alert(va1+" "+opr);
+          display.innerHTML="";
+        break;
+        case 'igual':
+          var val2 = Number(display.innerHTML);
+          var val1 = Number(sessionStorage.getItem("valor1"));
+          var oper = sessionStorage.getItem("digito");
+          switch (oper){
+            case 'mas':
+            resultado = val1+val2;
+            display.innerHTML= resultado;
+            break;
+          }
+        break;
       }
     }
-  }
+  },
 }
-
 Calculadora.init();
