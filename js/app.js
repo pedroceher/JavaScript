@@ -154,7 +154,6 @@ var Calculadora = {
           valor1 = Number(display.innerHTML),
           sessionStorage.setItem("valor1",valor1);
           sessionStorage.setItem("digito",digito);
-          alert(va1+" "+opr);
           display.innerHTML="";
         break;
         case 'igual':
@@ -164,6 +163,18 @@ var Calculadora = {
           switch (oper){
             case 'mas':
             resultado = val1+val2;
+            display.innerHTML= resultado;
+            break;
+            case 'menos':
+            resultado = val1-val2;
+            display.innerHTML= resultado;
+            break;
+            case 'por':
+            resultado = val1*val2;
+            display.innerHTML= resultado;
+            break;
+            case 'dividido':
+            resultado = val1/val2;
             display.innerHTML= resultado;
             break;
           }
