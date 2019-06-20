@@ -147,39 +147,45 @@ var Calculadora = {
             display.innerHTML=-numero;
           }
         break;
-        case 'mas':
-        case 'menos':
-        case 'por':
-        case 'dividido':
-          valor1 = Number(display.innerHTML),
-          sessionStorage.setItem("valor1",valor1);
-          sessionStorage.setItem("digito",digito);
-          display.innerHTML="";
-        break;
-        case 'igual':
-          var val2 = Number(display.innerHTML);
-          var val1 = Number(sessionStorage.getItem("valor1"));
-          var oper = sessionStorage.getItem("digito");
-          switch (oper){
-            case 'mas':
-            resultado = val1+val2;
-            display.innerHTML= resultado;
-            break;
-            case 'menos':
-            resultado = val1-val2;
-            display.innerHTML= resultado;
-            break;
-            case 'por':
-            resultado = val1*val2;
-            display.innerHTML= resultado;
-            break;
-            case 'dividido':
-            resultado = val1/val2;
-            display.innerHTML= resultado;
-            break;
-          }
-        break;
       }
+    }
+    switch (digito){
+      case 'mas':
+      case 'menos':
+      case 'por':
+      case 'dividido':
+        valor1 = Number(display.innerHTML),
+        sessionStorage.setItem("valor1",valor1);
+        sessionStorage.setItem("digito",digito);
+        display.innerHTML="";
+      break;
+      case 'igual':
+        var val2 = Number(display.innerHTML);
+        var val1 = Number(sessionStorage.getItem("valor1"));
+        var oper = sessionStorage.getItem("digito");
+        switch (oper){
+          case 'mas':
+          var resultado = val1+val2;
+          resultado.toPrecision(8);
+          break;
+          case 'menos':
+          var resultado = val1-val2;
+          resultado.toPrecision(8);
+          break;
+          case 'por':
+          var resultado = val1*val2;
+          resultado.toPrecision(8);
+          break;
+          case 'dividido':
+          var resultado = val1/val2;
+          resultado.toPrecision(8);
+          break;
+        }
+        var respuesta = resultado.toString();
+        var resp = respuesta.substring(0, 8);
+        display.innerHTML= resp;
+
+      break;
     }
   },
 }
